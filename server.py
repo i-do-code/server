@@ -5,6 +5,9 @@ from flask import Flask
 from pymongo import MongoClient, database, collection
 from flask_cors import CORS
 from keras.models import load_model
+import tensorflow
+import keras
+import h5py
 
 
 app = Flask(__name__)
