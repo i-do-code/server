@@ -55,4 +55,4 @@ def forecast_crime(pd, year, month, day):
     for i in range(diff.days, diff.days + 10):
         date_range.append([i])
     
-    return str(model.predict(np.array([[date_range]])))
+    return str(model.predict(np.array([date_range])))
