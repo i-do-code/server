@@ -29,12 +29,12 @@ def inference(dow, month, district, builings, vehicles, a_lights, s_lights, temp
     return prediction_perc * 145
 
 @app.route("/data/<pd>/<year>/<month>/<day>")
-def hello(pd, year, month, day):
+def get_data(pd, year, month, day):
     item = collection.find_one({'pd': int(pd), 'date': "{}/{}/{}".format(month, day, year)}, projection={'_id': False})
     return json.dumps(item)
 
 @app.route("/predict/crime/<pd>/<year>/<month>/<day>")
-def hello(pd, year, month, day):
+def predict_crime(pd, year, month, day):
     item = collection.find_one({'pd': int(pd), 'date': "{}/{}/{}".format(month, day, year)}, projection={'_id': False})
     dow = date(year, month, day).weekday()
     data = inference(dow, month, pd, item["abandoned_building"], item["abandoned_vehicle"], item["alley_light_out"], item["street_light_out"], item["temperature"])
