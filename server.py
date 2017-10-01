@@ -36,7 +36,7 @@ def get_data(pd, year, month, day):
 @app.route("/predict/crime/<pd>/<year>/<month>/<day>")
 def predict_crime(pd, year, month, day):
     item = collection.find_one({'pd': int(pd), 'date': "{}/{}/{}".format(month, day, year)}, projection={'_id': False})
-    dow = date(year, month, day).weekday()
+    dow = date(int(year), int(month), int(day)).weekday()
     data = inference(dow, month, pd, item["abandoned_building"], item["abandoned_vehicle"], item["alley_light_out"], item["street_light_out"], item["temperature"])
     return json.dumps(data)
 
