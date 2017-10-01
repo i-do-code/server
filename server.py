@@ -54,6 +54,6 @@ def forecast_crime(pd, year, month, day):
     date_range = []
     for i in range(diff.days, diff.days + 10):
         element = model.predict(np.array([[[i]]]))
-        date_range.append(float(element[0]))
+        date_range.append(int(element[0]*145))
     
-    return str(date_range)
+    return json.dumps(date_range)
