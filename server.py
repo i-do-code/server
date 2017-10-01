@@ -47,7 +47,7 @@ def predict_crime(pd, year, month, day):
 
 @app.route("/forecast/crime/<pd>/<year>/<month>/<day>")
 def forecast_crime(pd, year, month, day):
-    start = date(year, month, day)
+    start = date(2012, 3, 5)
     diff = date(int(year), int(month), int(day)) - start
 
     model = load_model('lstm-{}.h5'.format(pd))
