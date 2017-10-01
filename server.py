@@ -43,7 +43,7 @@ def predict_crime(pd, year, month, day):
     dow = date(int(year), int(month), int(day)).weekday()
     data = inference(dow, month, pd, item["abandoned_building"], item["abandoned_vehicle"], item["alley_light_out"], item["street_light_out"], item["temperature"])
     
-    return str(data)
+    return json.dumps(data[0][0])
 
 @app.route("/forecast/crime/<pd>/<year>/<month>/<day>")
 def forecast_crime(pd, year, month, day):
