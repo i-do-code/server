@@ -1,6 +1,6 @@
 import sys
 import json
-from datetime import date
+from datetime import date, timedelta
 from flask import Flask
 from pymongo import MongoClient, database, collection
 from flask_cors import CORS
@@ -45,4 +45,14 @@ def predict_crime(pd, year, month, day):
     
     return str(data)
 
+@app.route("/forecast/crime/<pd>/<year>/<month>/<day>")
+def forecast_crime(pd, year, month, day):
+    start = date(year, month, day)
+    diff = date(int(year), int(month), int(day)) - start
 
+    model = load_model('lstm-{}.h5'.format(pd))
+    date_range = []
+    for i in range(diff.days, diff.days + 10):
+        date_range.append(i)
+    
+    return str(model.predict(np.array([[date_range]])))
