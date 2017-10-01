@@ -53,6 +53,6 @@ def forecast_crime(pd, year, month, day):
     model = load_model('lstm-{}.h5'.format(pd))
     date_range = []
     for i in range(diff.days, diff.days + 10):
-        date_range.append([i])
+        date_range.append(model.predict(np.array([[[i]]])))
     
-    return str(model.predict(np.array([date_range])))
+    return str(date_range)
