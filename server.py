@@ -8,6 +8,7 @@ from keras.models import load_model
 import tensorflow
 import keras
 import h5py
+import numpy as np
 
 
 app = Flask(__name__)
@@ -28,7 +29,7 @@ def inference(dow, month, district, builings, vehicles, a_lights, s_lights, temp
     #  - Street lights out
     #  - Temperature
     model = load_model('predict-{}.h5'.format(district))
-    prediction_perc = model.predict([[dow, month, district, builings, vehicles, a_lights, s_lights, temp]])
+    prediction_perc = model.predict([np.array([dow, month, district, builings, vehicles, a_lights, s_lights, temp])])
     return prediction_perc * 145
 
 @app.route("/data/<pd>/<year>/<month>/<day>")
