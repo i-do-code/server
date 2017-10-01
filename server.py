@@ -1,8 +1,5 @@
 import sys
 import json
-import tensorflow
-import keras
-import h5py
 from datetime import date
 from flask import Flask
 from pymongo import MongoClient, database, collection
